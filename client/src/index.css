@@ -1,0 +1,15 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(165, 235, 212);
+}
+div {
+  background-color: rgb(47, 236, 126);
+  padding: 10px;
+  margin: 100px 200px;
+  text-align: center;
+  border-radius: 2%;
+}
