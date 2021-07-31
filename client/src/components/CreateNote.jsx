@@ -12,8 +12,6 @@ function CreateNote() {
     // console.log(event.target);
 
     setInput((prevInput) => {
-      console.log(prevInput);
-
       return {
         ...prevInput,
         [name]: value,
@@ -23,13 +21,25 @@ function CreateNote() {
 
   function handelClick(event) {
     event.preventDefault();
-    // console.log(input);
-    const newNote = {
-      tilte: input.title,
-      content: input.content,
-    };
+    // const newNote = {
+    //   tilte: input.title,
+    //   content: input.content,
+    // };
 
-    axios.post("http://localhost:3001/create", newNote);
+    axios
+      .post("http://localhost:3005/create", input)
+      .then((res) => {
+        //clear input box
+        setInput({
+          title: "",
+          content: "",
+        });
+        //log created data
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -42,7 +52,7 @@ function CreateNote() {
             onChange={handelChange}
             name="title"
             placeholder="Note title"
-            // value={input.title}
+            value={input.title}
             className="form-control"
           />
         </div>
@@ -51,7 +61,7 @@ function CreateNote() {
             onChange={handelChange}
             name="content"
             placeholder="Note details"
-            // value={input.content}
+            value={input.content}
             className="form-control"
           ></textarea>
         </div>
